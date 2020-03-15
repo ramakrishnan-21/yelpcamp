@@ -18,8 +18,16 @@ var commentRoutes = require("./routes/comments");
 var campgroundRoutes = require("./routes/campgrounds");
 var indexRoutes = require("./routes/index");
 
-mongoose.connect('mongodb://localhost/yelp_camp',{useNewUrlParser: true,useUnifiedTopology: true})
-
+mongoose.connect("mongodb+srv://ramakrishnan:Ramkri@01@cluster0-hdk17.mongodb.net/test?retryWrites=true&w=majority", {
+    useNewUrlParser: true, 
+    useUnifiedTopology: true
+   
+}).then(() => {
+    console.log("connect to DB!")
+ 
+}).catch(err => {
+    console.log("ERROR", err.message);
+});
 app.use(flash());
 //PASSPORT CONFIG
 app.use(require("express-session")({
@@ -49,5 +57,5 @@ app.use(commentRoutes);
 app.use(campgroundRoutes);
 app.use(indexRoutes);
 app.listen(3000,function(){
-	console.log("YelpCamp has started");
+console.log("YelpCamp has started");
 });
